@@ -1,0 +1,39 @@
+create table Users
+(
+    id serial primary key,
+  username varchar(50) not null unique, 
+  firstname varchar(50),
+  lastname varchar(50),
+  phone varchar(50) not null unique,
+  address varchar(50) ,
+  email varchar(50) not null unique,
+  birthdate date
+)
+
+create table Markets
+(
+    id serial primary key,
+  market_name varchar(50) not null unique, 
+  address varchar(50) not null,
+  description varchar(50),
+  startdate date,
+  userid int references users(id) not null
+)
+
+
+create table Products
+(
+    id serial primary key ,
+  name varchar(100) not null,
+  price decimal,
+  marketid int references Markets(id) not null,
+  categoryid int references Categories(id) not null
+  
+)
+
+
+create table Categories
+(
+  id serial primary key,
+  name varchar(50) not null unique
+)
